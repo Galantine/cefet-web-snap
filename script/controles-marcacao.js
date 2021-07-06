@@ -2,27 +2,41 @@
 let botaoCheckbox = document.querySelectorAll('#visibilidade-das-marcacoes')[0]
 let marcacoes = document.querySelectorAll('.marcacao')
 let selecionadoAtual = 0
-let X = document.querySelectorAll('#x-da-marcacao')[0]
-let Y = document.querySelectorAll('#y-da-marcacao')[0]
-let largura  = document.querySelectorAll('#largura-da-marcacao')[0]
-let altura  = document.querySelectorAll('#altura-da-marcacao')[0]
-let titulo = document.querySelectorAll('#titulo-da-marcacao')[0]
-let conteudo = document.querySelectorAll('#conteudo-da-marcacao')[0]
-let cor = document.querySelectorAll('#cor-da-marcacao')[0]
-let retangular = document.querySelectorAll('input[value="formato-retangular"]')[0]
-let oval = document.querySelectorAll('input[value="formato-oval"]')[0]
+
+let campoX = document.querySelectorAll('#x-da-marcacao')[0]
+let campoY = document.querySelectorAll('#y-da-marcacao')[0]
+let campoLargura  = document.querySelectorAll('#largura-da-marcacao')[0]
+let campoAltura  = document.querySelectorAll('#altura-da-marcacao')[0]
+let campoTitulo = document.querySelectorAll('#titulo-da-marcacao')[0]
+let campoConteudo = document.querySelectorAll('#conteudo-da-marcacao')[0]
+let campoCor = document.querySelectorAll('#cor-da-marcacao')[0]
+let botaoRetangular = document.querySelectorAll('input[value="formato-retangular"]')[0]
+let botaoOval = document.querySelectorAll('input[value="formato-oval"]')[0]
+
+let radioSelecionadoAtual = 0
+let radioButtons = document.querySelectorAll('input[type=radio]')
 
 function preencheControles() {
 	let selecionada = document.querySelectorAll('.selecionada')[0];
-	X.value = parseInt(selecionada.style.left)
-	Y.value = parseInt(selecionada.style.top)
-	largura.value = parseInt(selecionada.style.width)
-	altura.value = parseInt(selecionada.style.height)
-	titulo.value = selecionada.getAttribute('data-titulo')
-	conteudo.value = selecionada.getAttribute('data-conteudo')
-	cor.value = selecionada.getAttribute('data-cor')
-	retangular.checked = !selecionada.classList.contains('formato-oval')
-	oval.checked = selecionada.classList.contains('formato-oval')
+	campoX.value = parseInt(selecionada.style.left)
+	campoY.value = parseInt(selecionada.style.top)
+	campoLargura.value = parseInt(selecionada.style.width)
+	campoAltura.value = parseInt(selecionada.style.height)
+	campoTitulo.value = selecionada.getAttribute('data-titulo')
+	campoConteudo.value = selecionada.getAttribute('data-conteudo')
+	campoCor.value = selecionada.getAttribute('data-cor')
+	botaoRetangular.checked = !selecionada.classList.contains('formato-oval')
+	botaoOval.checked = selecionada.classList.contains('formato-oval')
+}
+
+function alteraEstiloSelecionada(style, value, unit) {
+	let selecionada = document.querySelectorAll('.selecionada')[0];
+	selecionada.style[style] = `${value}${unit}`
+}
+
+function alteraAtributoSelecionada(atributo, value) {
+	let selecionada = document.querySelectorAll('.selecionada')[0];
+	selecionada.setAttribute(atributo, value)
 }
 
 preencheControles()
@@ -39,5 +53,50 @@ marcacoes.forEach(marcacao => {
 			selecionadoAtual = 1 - selecionadoAtual
 		}
 		preencheControles()
+	})
+})
+
+campoX.addEventListener('focusout', e => {
+	console.log("AAAAAAAAAAA")
+	alteraEstiloSelecionada('left', campoX.value, 'px')
+})
+
+campoY.addEventListener('focusout', e => {
+	console.log("AAAAAAAAAAA")
+	alteraEstiloSelecionada('top', campoY.value, 'px')
+})
+
+campoLargura.addEventListener('focusout', e => {
+	console.log("AAAAAAAAAAA")
+	alteraEstiloSelecionada('width', campoLargura.value, 'px')
+})
+
+campoAltura.addEventListener('focusout', e => {
+	console.log("AAAAAAAAAAA")
+	alteraEstiloSelecionada('height', campoAltura.value, 'px')
+})
+
+campoTitulo.addEventListener('focusout', e => {
+	console.log("AAAAAAAAAAA")
+	alteraAtributoSelecionada('data-titulo', campoTitulo.value)
+})
+
+campoConteudo.addEventListener('focusout', e => {
+	console.log("AAAAAAAAAAA")
+	alteraAtributoSelecionada('data-conteudo', campoConteudo.value)
+})
+
+campoCor.addEventListener('focusout', e => {
+	console.log("AAAAAAAAAAA")
+	alteraAtributoSelecionada('data-cor', campoCor.value)
+})
+
+radioButtons.forEach(botao => {
+	let selecionada = document.querySelectorAll('.selecionada')[0];
+	botao.addEventListener('click', e => {
+		selecionada.classList.remove('formato-oval')
+		selecionada.classList.remove('formato-retangular')
+		let numBotao = Array.prototype.indexOf.call(radioButtons,botao)
+		selecionada.classList.add(radioButtons[numBotao].value)
 	})
 })
