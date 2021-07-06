@@ -16,7 +16,7 @@ marcacoes2.forEach(marcacao => {
 		let conteudo = document.createElement('p')
 		conteudo.innerHTML = marcacao.getAttribute('data-conteudo')
 		balaozinho.appendChild(conteudo)
-		balaozinho.style.backgroundColor = marcacao.getAttribute('data-cor')
+		balaozinho.style.color = marcacao.getAttribute('data-cor')
 	});
 
 	marcacao.addEventListener('mouseout', e => {
