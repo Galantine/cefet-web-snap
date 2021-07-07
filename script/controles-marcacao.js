@@ -57,37 +57,30 @@ marcacoes.forEach(marcacao => {
 })
 
 campoX.addEventListener('focusout', e => {
-	console.log("AAAAAAAAAAA")
 	alteraEstiloSelecionada('left', campoX.value, 'px')
 })
 
 campoY.addEventListener('focusout', e => {
-	console.log("AAAAAAAAAAA")
 	alteraEstiloSelecionada('top', campoY.value, 'px')
 })
 
 campoLargura.addEventListener('focusout', e => {
-	console.log("AAAAAAAAAAA")
 	alteraEstiloSelecionada('width', campoLargura.value, 'px')
 })
 
 campoAltura.addEventListener('focusout', e => {
-	console.log("AAAAAAAAAAA")
 	alteraEstiloSelecionada('height', campoAltura.value, 'px')
 })
 
 campoTitulo.addEventListener('focusout', e => {
-	console.log("AAAAAAAAAAA")
 	alteraAtributoSelecionada('data-titulo', campoTitulo.value)
 })
 
 campoConteudo.addEventListener('focusout', e => {
-	console.log("AAAAAAAAAAA")
 	alteraAtributoSelecionada('data-conteudo', campoConteudo.value)
 })
 
 campoCor.addEventListener('focusout', e => {
-	console.log("AAAAAAAAAAA")
 	alteraAtributoSelecionada('data-cor', campoCor.value)
 })
 
